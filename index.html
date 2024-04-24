@@ -43,7 +43,7 @@ const school = {
   ],
 };
 
-// countCalculation : This function counts the number of teachers and students in math and history departments.
+//Problem 10 -> countCalculation : This function counts the number of teachers and students in math and history departments.
 function  countCalculation (school) {
     // destructuring the departments.
     let {math , science , history , english} = school.departments
@@ -60,7 +60,7 @@ function  countCalculation (school) {
     };  
 }
 
-// findTopStudent : This function finds the top student in math department.
+//Problem 11 -> findTopStudent : This function finds the top student in math department.
 function  findTopStudent (school,course) {
     let {students}=school;
     let maxScore = -Infinity;
@@ -79,8 +79,76 @@ function  findTopStudent (school,course) {
     return obj
 }
 
-// 
-// console.log(findTopStudent(school,"math"))
-// console.log(countCalculation(school));
+//Problem 12 -> addNewDept : This function adds a new department to the school.
+
+function addNewDept (school,departmentName ,obj) {
+
+    const newDepartment = {
+        ...school.departments, 
+        [departmentName]: obj 
+    };
+
+    return {
+        ...school,
+        departments: newDepartment
+    };
+
+}
+
+// Problem 13 -> highestStudentCountDepartment : This function finds the department with the highest number of students.
+
+function highestStudentCountDepartment (school) {
+    let maxStudentsCourse = "";
+    let maxStudents = -Infinity;
+    // looping over the departments
+    for(let dept in school.departments){
+        if(school.departments[dept].students > maxStudents) {
+              maxStudents = school.departments[dept].students;
+           maxStudentsCourse = dept;
+        }
+    }
+
+    return `The department with the highest number of students is - ${maxStudentsCourse}`;
+}
+
+
+// Problem 14 -> generateGreeting : This function generates a greeting message for the name and language you provide.
+
+function generateGreeting (name,language = "English") {
+
+    let languages = {
+        English : `Hello ${name}`,
+        Hindi : `Namaste (नमस्ते) ${name}`,
+        French : `Bonjour ${name}`,
+        Spanish : `Hola ${name}`,
+        German : `Guten Tag ${name}`,
+        Russian : `Privet ${name}`,
+        Japanese : `Kon'nichiwa ${name}`,
+        Telugu : `Namaskaram (నమస్కారం) ${name}`,
+        Kannada : `Namaskara (ನಮಸ್ಕಾರ) ${name}`,
+        Urdu : `As-salamu alaykum (لسلام علیکم) ${name}`,
+    }
+
+    for (let lang in languages) {
+        if(lang === language) {
+            return languages[lang];
+        }
+    }
+
+}
+
+// ---------> Code Ends and Execution Begins <----------
+
+console.log(countCalculation(school));
+
+console.log(findTopStudent(school,"math"))
+
+console.log(addNewDept(school,"art", {teachers : 2, students : 50}));
+
+console.log(highestStudentCountDepartment(school));
+
+console.log(generateGreeting("Dhanush","Telugu"));
+
+
 </script>
 </html>
