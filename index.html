@@ -3,14 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./styles.css">
     <title>School Information</title>
 </head>
 <body>
     <div id="root">School Information</div>
 </body>
 <script>
-    const school = {
+const school = {
   name: "XYZ School",
   establishYear: 1990,
   departments: {
@@ -44,5 +43,44 @@
   ],
 };
 
+// countCalculation : This function counts the number of teachers and students in math and history departments.
+function  countCalculation (school) {
+    // destructuring the departments.
+    let {math , science , history , english} = school.departments
+
+    // destructuring each department with teacher and student values.
+    let {teachers: mathTeachers , students: mathStudents} = math;
+    let {teachers: historyTeachers , students: historyStudents} = history;   
+
+    return obj= {
+        mathTeachersCount : mathTeachers,
+        historyTeachersCount : historyTeachers,
+        mathStudentsCount : mathStudents,
+        historyStudentsCount : historyStudents
+    };  
+}
+
+// findTopStudent : This function finds the top student in math department.
+function  findTopStudent (school,course) {
+    let {students}=school;
+    let maxScore = -Infinity;
+    let obj ={};
+    // looping over the students 
+    for (let i = 0; i < students.length; i++) {
+        let {scores}=students[i];
+        if(scores[course]>maxScore){
+            maxScore = scores[course];
+
+            obj.name = students[i].name;
+            obj.className = students[i].className;
+            obj.scores = scores[course];
+        }
+    }
+    return obj
+}
+
+// 
+// console.log(findTopStudent(school,"math"))
+// console.log(countCalculation(school));
 </script>
 </html>
